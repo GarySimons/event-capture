@@ -43,17 +43,28 @@
 <button></button>
 <script>
     const divs = document.querySelectorAll('div');
+    // Add button
+    const button = document.querySelector('button');
 
     function logText(e) {
     console.log(this.classList.value);
     // below stops the event. Stops bubbling
-    e.stopPropagation();
+    // e.stopPropagation();
   }
 
     divs.forEach(div => div.addEventListener('click', logText, {
         // if true then only captures box one as it's stopped by the stopPropagation function. if false then capture each box
-        capture: true
+        capture: false,
+        // Once will only allow it to be clicked once, then will stop
+        once: true
     }));
+
+    // added a button. when 'once' is true it can only be clicked once. THis is 'unbinding' it can be used on shopping sites
+    button.addEventListener('click', () => {
+        console.log('CLICKED!!');
+    }, {
+        once: true
+    });
 </script>
 </body>
 </html>
