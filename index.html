@@ -46,9 +46,14 @@
 
     function logText(e) {
     console.log(this.classList.value);
+    // below stops the event. Stops bubbling
+    e.stopPropagation();
   }
 
-    divs.forEach(div => div.addEventListener('click', logText));
+    divs.forEach(div => div.addEventListener('click', logText, {
+        // if true then only captures box one as it's stopped by the stopPropagation function. if false then capture each box
+        capture: true
+    }));
 </script>
 </body>
 </html>
